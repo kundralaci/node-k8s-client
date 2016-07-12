@@ -12,6 +12,7 @@ export class Request
     private token
     private ignoreCerts
     private domain
+    private extension
 
     constructor(conf: any)
     {
@@ -33,7 +34,11 @@ export class Request
         if (conf.hasOwnProperty("strictSSL") && conf.strictSSL === false)
             this.ignoreCerts = true;
 
-        this.domain = conf.endpoint + '/api/' + conf.version + '/'
+        if (conf.hasOwnProperty("extension") && conf.extension === true) {
+            this.domain = conf.endpoint + '/apis/extensions/' + conf.version + '/'
+        } else {
+            this.domain = conf.endpoint + '/api/' + conf.version + '/'
+        }
     }
 
     private callbackFunction(primise, callback)

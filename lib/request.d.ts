@@ -5,6 +5,7 @@ export declare class Request {
     private token;
     private ignoreCerts;
     private domain;
+    private extension;
     constructor(conf: any);
     private callbackFunction(primise, callback);
     private getRequestOptions(path, opts?);
